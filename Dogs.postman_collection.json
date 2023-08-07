@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "804fdc58-4bf8-41b9-9c7b-519a40675b30",
+		"name": "Dogs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27513942"
+	},
+	"item": [
+		{
+			"name": "Get all breeds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dog.ceo/api/breeds/list/all",
+					"protocol": "https",
+					"host": [
+						"dog",
+						"ceo"
+					],
+					"path": [
+						"api",
+						"breeds",
+						"list",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Retriever",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify - retriever is within list\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dog.ceo/api/breed/{{Breed}}/images",
+					"protocol": "https",
+					"host": [
+						"dog",
+						"ceo"
+					],
+					"path": [
+						"api",
+						"breed",
+						"{{Breed}}",
+						"images"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Retriever Sub-breeds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dog.ceo/api/breed/{{Breed}}/list",
+					"protocol": "https",
+					"host": [
+						"dog",
+						"ceo"
+					],
+					"path": [
+						"api",
+						"breed",
+						"{{Breed}}",
+						"list"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get random Golden retriever",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"store random golden retriever image\", function () {\r",
+							"    // Parse the response body to a JSON object\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    // Retrieve the list of golden retriever images from the response\r",
+							"    const goldenRetrieverImages = responseJson.message;\r",
+							"\r",
+							"    // Check if the response contains any images\r",
+							"    if (goldenRetrieverImages && goldenRetrieverImages.length > 0) \r",
+							"    {\r",
+							"    // Randomly select an image from the array\r",
+							"        const randomIndex = Math.floor(Math.random() * goldenRetrieverImages.length);\r",
+							"        const randomGoldenRetrieverImage = goldenRetrieverImages[randomIndex];\r",
+							"\r",
+							"    // Store the URL of the randomly selected image in an environment variable\r",
+							"        pm.globals.set(\"randomGoldenRetrieverImage\", randomGoldenRetrieverImage);\r",
+							"    } \r",
+							"    else \r",
+							"    {\r",
+							"        console.log(\"No golden retriever images found.\");\r",
+							"    }\r",
+							"   // pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dog.ceo/api/breed/retriever/golden/images",
+					"protocol": "https",
+					"host": [
+						"dog",
+						"ceo"
+					],
+					"path": [
+						"api",
+						"breed",
+						"retriever",
+						"golden",
+						"images"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display random Golden retriever",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log('hello world')\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{randomGoldenRetrieverImage}}",
+					"host": [
+						"{{randomGoldenRetrieverImage}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
