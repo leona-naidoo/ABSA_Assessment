@@ -4,8 +4,8 @@ Automation
 The automation was done using Python and Robotframework. To execute please ensure you have the latest python version set up. 
 - Install the following libraries via the terminal/cmd prompt
   > pip install robotframework
-  > pip install robotframework-seleniumlibrary
-  > Ensure the python scripts paths is configured on your systems enviroment variables
+  > | pip install robotframework-seleniumlibrary
+- Ensure the python scripts paths is configured on your systems enviroment variables
 - Open up the solution with a suitable ide like vs code
 - In the terminal run the batch file run.bat
 - Screenshots and results stored in the results folder of the solution
